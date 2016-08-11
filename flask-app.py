@@ -17,8 +17,15 @@ reducing = Code("""function(key, values) {
 
 @app.route('/')
 def home_page():
+
+    lista = []
+    
     collection_number = mongo.db.twitter_collection.count()
-    languages = mongo.db.twitter_collection.map_reduce(mapping, reducing, "twitter")
-    languages = svi_jezici.find()
+    languages = mongo.db.twitter_collection.map_reduce(mapping, reducing, "twitter2")
+    
+    languages_popis = mongo.db.twitter2
+    for collection in languages_popis.find():
+        lista.append(collection)
+
     return render_template('index.html',
-        collection_number = collection_number, languages = languages)
+        collection_number = collection_number, languages = lista)
