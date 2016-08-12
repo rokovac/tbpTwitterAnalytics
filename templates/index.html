@@ -1,41 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Twitter Analytics Tool</title>
-
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
+      google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7],
-          ['Fuck', 	  12]
-        ]);
+      
+      /* var podaci = [['lol', 'lol'], ['en', 1207], ['und', 34], ['tl', 11], ['nl', 7], ['pt', 7], ['es', 6], ['ja', 6], ['fr', 4], ['in', 4], ['ro', 4], ['it', 3], ['th', 3], ['ar', 2], ['de', 2], ['ru', 2], ['cs', 1], ['da', 1], ['el', 1], ['fi', 1], ['hi', 1], ['ht', 1], ['lv', 1]] */
+
+      //var podaci = {{ languages }};
+      
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable( {{ languages | safe }} );
 
         var options = {
-          title: 'Najkorišteniji jezici u kolekciji'
+          title: 'My Daily Activities',
+          is3D: true,
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
         chart.draw(data, options);
       }
     </script>
-</head>
-<body>
-	Ovo je poruka od dokumenta index.html <br>
-	Broj zapisa u bazi: {{ collection_number }} <br>
-	Jezici u kolekciji : {{ languages }} <br>
+  </head>
+  <body>
+    Ovo je poruka od dokumenta index.html <br>
+    Broj zapisa u bazi: {{ collection_number }} <br>
+    Jezici u kolekciji : {{ languages }} <br>
 
-	<div id="piechart" style="width: 900px; height: 500px;"></div>
-
-</body>
+    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+  </body>
 </html>

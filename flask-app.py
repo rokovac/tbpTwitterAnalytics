@@ -3,6 +3,7 @@ from flask import render_template
 from flask_pymongo import PyMongo
 from bson.son import SON
 from bson.code import Code
+from operator import itemgetter
 
 app = Flask(__name__)
 app.config['MONGO_DBNAME'] = 'twitter_db'
@@ -15,10 +16,14 @@ mapping = Code("""function() {
 reducing = Code("""function(key, values) {
                 return Array.sum(values); }""")
 
+
+
 @app.route('/')
 def home_page():
 
     lista = []
+    filtriranaLista = []
+    header_strings = ['Jezik', 'Broj pojavljivanja']
     
     collection_number = mongo.db.twitter_collection.count()
     languages = mongo.db.twitter_collection.map_reduce(mapping, reducing, "twitter2")
@@ -26,6 +31,18 @@ def home_page():
     languages_popis = mongo.db.twitter2
     for collection in languages_popis.find():
         lista.append(collection)
-
+        
+    newlist = sorted(lista, key=itemgetter('value'), reverse=True)
+    
+    for a in newlist:
+        key = []
+        value = []
+        key.append(str(a['_id']))
+        value.append(int(a['value']))
+        key.extend(value)
+        filtriranaLista.append(key)
+    filtriranaLista = [header_strings] + filtriranaLista
+    
     return render_template('index.html',
-        collection_number = collection_number, languages = lista)
+                           collection_number = collection_number,
+                           languages = filtriranaLista)
