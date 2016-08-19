@@ -7,13 +7,14 @@ from tweepy.streaming import StreamListener
 import os
 import io
 
-ckey = #ckey
-consumer_secret = #consumer_secret
-access_token_key = #access_token_key
-access_token_secret = #access_token_secret
+# Twitter podaci
+ckey = '6MKsa5bWRW8FLyDs8UCmn8hNX'
+consumer_secret = 'uZHxNEfK1cymh6XrmguwNzvjsUzTXT6ZFyMq0RJePeMNZFIPpR'
+access_token_key = '2839762967-kGbvANeMdVQWaEljInfck6kHPOoRKqfGsIrVl4J'
+access_token_secret = 'eb8TzDXtWfHYKdPh8kHNXseuiIjJjB51bBfLRsD6Kdqnq'
+
 
 start_time = time.time() #grabs the system time
-#keyword_list = ['olympics'] #track list
 keyword_list = raw_input("Insert keyword: ")
 keyword_list = keyword_list.split()
  
