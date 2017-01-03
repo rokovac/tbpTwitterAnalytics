@@ -8,10 +8,10 @@ import os
 import io
 
 # Twitter podaci
-ckey = '6MKsa5bWRW8FLyDs8UCmn8hNX'
-consumer_secret = 'uZHxNEfK1cymh6XrmguwNzvjsUzTXT6ZFyMq0RJePeMNZFIPpR'
-access_token_key = '2839762967-kGbvANeMdVQWaEljInfck6kHPOoRKqfGsIrVl4J'
-access_token_secret = 'eb8TzDXtWfHYKdPh8kHNXseuiIjJjB51bBfLRsD6Kdqnq'
+ckey = #ckey
+consumer_secret = #consumer_secret
+access_token_key = #access_token_key
+access_token_secret = #access_token_secret
 
 
 start_time = time.time() #grabs the system time
